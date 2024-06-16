@@ -1,0 +1,59 @@
+service: serverless-log-processing-service
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:ap-south-1:*:table/ProcessedLogsTbl
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+      Resource: arn:aws:s3:::lps-log-bckt/*
+    - Effect: Allow
+      Action:
+        - sqs:ReceiveMessage
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes
+      Resource:
+        Fn::GetAtt:
+          - LogQueue
+          - Arn
+  
+
+functions:
+  processS3Event:
+    handler: index.handler
+    events:
+      - s3:
+          bucket: lps-log-bckt
+          event: s3:ObjectCreated:*
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - LogQueue
+              - Arn
+
+resources:
+  Resources:
+    ProcessedLogsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ProcessedLogsTbl
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    
+    LogQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: lpsLogQueue

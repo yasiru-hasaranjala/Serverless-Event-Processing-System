@@ -1,0 +1,17 @@
+{
+    "name": "log-processing-service",
+    "version": "1.0.0",
+    "description": "A service to process log files from S3 and SQS, and store them in DynamoDB",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "@aws-sdk/client-s3": "^3.56.0",
+      "@aws-sdk/client-dynamodb": "^3.56.0"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  
