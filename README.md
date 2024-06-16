@@ -1,10 +1,10 @@
-# Serverless Event Processing System
+# Serverless Event Processing System (Serverless Log Processing System)
 
 ## Introduction
 This serverless application processes events from AWS S3 and SQS, transforms the data, and stores it in Amazon DynamoDB.
 
 ## Architecture Diagram
-Architectural-Diagram.png
+![Architecture Diagram](https://github.com/yasiru-hasaranjala/Serverless-Event-Processing-System/blob/main/Architecture-Diagram.png)
 
 ## Deployment Instructions
 1. Clone the repository.
