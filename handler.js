@@ -24,7 +24,7 @@ const processS3Event = async (event) => {
       const transformedData = transformLogEntry(entry);
       console.log(`Inserting log entry into DynamoDB: ${JSON.stringify(transformedData)}`);
       const putItemParams = {
-        TableName: 'ProcessedLogsTable2',
+        TableName: 'ProcessedLogsTbl',
         Item: transformedData,
       };
 
@@ -48,7 +48,7 @@ const processSQSEvent = async (event) => {
         const transformedData = transformLogEntry(entry);
         console.log(`Inserting log entry into DynamoDB: ${JSON.stringify(transformedData)}`);
         const putItemParams = {
-          TableName: 'ProcessedLogsTable2',
+          TableName: 'ProcessedLogsTbl',
           Item: transformedData,
         };
 
