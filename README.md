@@ -4,36 +4,7 @@
 This serverless application processes events from AWS S3 and SQS, transforms the data, and stores it in Amazon DynamoDB.
 
 ## Architecture Diagram
-  +-----------------+          +----------------+
-  |                 |          |                |
-  |    S3 Bucket    |          |    SQS Queue   |
-  |  (Log Storage)  |          |  (Log Messages)|
-  |                 |          |                |
-  +-------+---------+          +-------+--------+
-          |                            |
-          |                            |
-          |   +---------------------+  |
-          |   |                     |  |
-          +-->+     Lambda          +<--+
-              |   (Log Processor)   |
-              +---------+-----------+
-                        |
-                        |
-                 +------+------+
-                 |             |
-                 |  DynamoDB   |
-                 | (Processed  |
-                 |    Logs)    |
-                 +-------------+
-                        |
-                        |
-                 +------+------+
-                 |             |
-                 | CloudWatch  |
-                 | (Monitoring)|
-                 |             |
-                 +-------------+
-
+Architectural-Diagram.png
 
 ## Deployment Instructions
 1. Clone the repository.
