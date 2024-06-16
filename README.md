@@ -1,4 +1,4 @@
-# Serverless Event Processing System (Serverless Log Processing System)
+# Serverless Log Processing System
 
 ## Introduction
 This serverless application processes events from AWS S3 and SQS, transforms the data, and stores it in Amazon DynamoDB.
